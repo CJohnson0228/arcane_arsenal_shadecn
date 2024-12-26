@@ -2,12 +2,15 @@ import AnimatedLayout from "@/app/layouts/AnimatedLayout"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { playerClasses } from "@/utils/mainClasses/mainClasses"
-import { ClassNameType } from "@/utils/mainClasses/types/mainClassType"
+import { db } from "@/config/firebase.config"
+import { ClassNameType, mainClassType } from "@/utils/mainClasses/types/mainClassType"
+import { collection, getDocs } from "firebase/firestore"
 import { useAtom, useAtomValue } from "jotai"
+import { useEffect } from "react"
 import { genderAtom, mainClassAtom } from "../Atoms/characterAtom"
+import { classListAtom } from "../Atoms/creationDataAtom"
 
-const SelectedClassDisplay = ({ selectedClass, gender }: { selectedClass: ClassNameType, gender: 'f' | 'm' | undefined }) => {
+const SelectedClassDisplay = ({ selectedClass, gender, playerClasses }: { selectedClass: ClassNameType, gender: 'f' | 'm' | undefined, playerClasses: mainClassType[] }) => {
   const thisClass = playerClasses.find((playerClass) => playerClass.name === selectedClass)
 
   if (thisClass) {
@@ -30,8 +33,21 @@ const SelectedClassDisplay = ({ selectedClass, gender }: { selectedClass: ClassN
 }
 
 const MainClass = () => {
+  const [playerClasses, setPlayerClasses] = useAtom(classListAtom)
   const gender = useAtomValue(genderAtom)
   const [mainClassSelect, setMainClassSelect] = useAtom(mainClassAtom)
+
+  // populate classList from database
+  useEffect(() => {
+    (async () => {
+      const list: mainClassType[] = [];
+      const classListFirebase = await getDocs(collection(db, 'playerClasses'))
+      classListFirebase.forEach((doc) => {
+        list.push(doc.data() as mainClassType)
+      })
+      setPlayerClasses(list)
+    })()
+  }, [setPlayerClasses])
 
   const handleClassSelect = (playerClassName: ClassNameType) => {
     setMainClassSelect(playerClassName)
@@ -42,8 +58,8 @@ const MainClass = () => {
       <div className="bg-background/80 backdrop-blur-sm mx-auto mb-20 px-10 py-5 rounded-lg max-w-3xl">
         <div className="mb-2 font-serif text-3xl text-center text-primary">Choose a Class</div>
         <div className="flex justify-center items-center p-1 border rounded-lg min-h-[80px] font-sans text-center text-muted-foreground">
-          {mainClassSelect
-            ? <SelectedClassDisplay selectedClass={mainClassSelect} gender={gender} />
+          {mainClassSelect && playerClasses
+            ? <SelectedClassDisplay selectedClass={mainClassSelect} gender={gender} playerClasses={playerClasses} />
             : <p>This is your character's occupation</p>
           }
         </div>

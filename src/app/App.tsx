@@ -16,9 +16,18 @@ function App() {
   const setArtisanUrl = useSetAtom(artisanUrlAtom)
 
   useEffect(() => {
+    // script for adding data to firestore database
+    // (async () => {
+    //   for (let i = 0; i < characterClasses.length; i++) {
+    //     console.log(characterClasses[i])
+    //     await setDoc(doc(db, 'playerClasses', characterClasses[i].name), characterClasses[i])
+    //   }
+    // })()
     const artisanSelect = Math.floor(Math.random() * artisansArray.length)
     setArtisan(artisanSelect)
     setArtisanUrl(artisansArray[artisanSelect])
+
+
   }, [setArtisan, setArtisanUrl])
 
   useEffect(() => {
@@ -58,7 +67,7 @@ function App() {
       }
     })
     return () => unsubscribe()
-  }, [])
+  }, [setAuth, setUser])
 
   return (
     <div
