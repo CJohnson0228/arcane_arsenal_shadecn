@@ -32,12 +32,7 @@ const CreateCard = ({ ...props }) => {
         </CardTitle>
       </CardHeader>
       <CardFooter className="flex p-0">
-        <motion.div whileHover={{
-          backgroundColor: 'hsl(var(--secondary))',
-          transition: { duration: 0.5 },
-        }}
-          onClick={() => navigate('/create')}
-          className="bg-primary p-1 text-center text-primary-foreground cursor-pointer grow">Begin</motion.div>
+        <div onClick={() => navigate('/create')} className="bg-green-500 p-1 text-black text-center hover:text-white cursor-pointer grow">Play</div>
       </CardFooter>
     </AnimatedCreateCard>
   )

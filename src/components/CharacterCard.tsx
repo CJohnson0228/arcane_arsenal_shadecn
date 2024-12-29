@@ -46,9 +46,9 @@ const CharacterCard = forwardRef<
         <ContentItem label='Level:' value={character.level} />
       </CardContent>
       <CardFooter className="flex p-0">
-        <div className="bg-green-500 p-1 text-center text-primary-foreground grow">Play</div>
-        <div className="bg-cyan-500 p-1 text-center text-primary-foreground grow">Edit</div>
-        <div className="bg-red-500 p-1 text-center text-primary-foreground grow">Delete</div>
+        <div className="bg-green-500 p-1 text-black text-center hover:text-white cursor-pointer grow">Play</div>
+        <div className="bg-cyan-500 p-1 text-black text-center hover:text-white cursor-pointer grow">Edit</div>
+        <div className="bg-red-500 p-1 text-black text-center hover:text-white cursor-pointer grow">Delete</div>
       </CardFooter>
     </Card>
   )

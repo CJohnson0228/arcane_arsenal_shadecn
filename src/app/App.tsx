@@ -16,8 +16,6 @@ function App() {
   const setArtisanUrl = useSetAtom(artisanUrlAtom)
 
   useEffect(() => {
-    // script for adding data to firestore database
-    // (async () => await setDoc(doc(db, 'database', 'PlayerClasses'), playerClasses))()
     const artisanSelect = Math.floor(Math.random() * artisansArray.length)
     setArtisan(artisanSelect)
     setArtisanUrl(artisansArray[artisanSelect])

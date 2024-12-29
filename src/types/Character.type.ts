@@ -172,7 +172,7 @@ export interface CharacterType {
     | 'soldier'
     | 'wayfarer'
   gender: 'm' | 'f' | undefined
-  mainClass?:
+  mainClass:
     | undefined
     | 'artificer'
     | 'barbarian'
@@ -187,7 +187,7 @@ export interface CharacterType {
     | 'sorcerer'
     | 'warlock'
     | 'wizard'
-  subClass?:
+  subClass:
     | undefined
     | 'alchemist'
     | 'artillerist'
@@ -287,7 +287,7 @@ export interface CharacterType {
     | 'war magic'
     | 'bladesinging'
     | 'order of scribes'
-  species?:
+  species:
     | 'Aasimar'
     | 'Dragonborn'
     | 'Dwarf'
@@ -298,6 +298,7 @@ export interface CharacterType {
     | 'Human'
     | 'Orc'
     | 'Tiefling'
+  subSpecies: string | undefined
   appearance: string
   backstory: string
   personality: string
