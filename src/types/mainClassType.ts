@@ -1,7 +1,7 @@
 import { allArmorType } from '@/utils/equipment/types/armorTypes'
 import { toolType } from '@/utils/equipment/types/equipmentTypes'
 import { allWeaponsType } from '@/utils/equipment/types/weaponTypes'
-import { skillsListType } from '@/utils/skills/types/skillsListType'
+import { skillsListType } from '@/utils/proficiencies/types/skillsListType'
 
 export type ClassNameType =
   | 'artificer'

@@ -1,6 +1,4 @@
-import { skillsListType } from './types/skillsListType'
-
-export const skillsList: skillsListType[] = [
+export const skillsList = [
   'acrobatics',
   'animal handling',
   'arcana',
@@ -19,4 +17,4 @@ export const skillsList: skillsListType[] = [
   'sleight of hand',
   'stealth',
   'survival',
-] as const
+]

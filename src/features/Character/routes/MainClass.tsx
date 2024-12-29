@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { db } from "@/config/firebase.config"
-import { ClassNameType, mainClassType } from "@/utils/mainClasses/types/mainClassType"
-import { collection, getDocs } from "firebase/firestore"
+import { ClassNameType, mainClassType } from "@/types/mainClassType"
+import { doc, getDoc } from "firebase/firestore"
 import { useAtom, useAtomValue } from "jotai"
 import { useEffect } from "react"
 import { genderAtom, mainClassAtom } from "../Atoms/characterAtom"
@@ -41,10 +41,13 @@ const MainClass = () => {
   useEffect(() => {
     (async () => {
       const list: mainClassType[] = [];
-      const classListFirebase = await getDocs(collection(db, 'playerClasses'))
-      classListFirebase.forEach((doc) => {
-        list.push(doc.data() as mainClassType)
-      })
+      const classListFirebase = await getDoc(doc(db, 'database', 'PlayerClasses'))
+      if (classListFirebase.exists()) {
+        const classArray = classListFirebase.data()
+        Object.keys(classArray).forEach(element => {
+          list.push(classArray[element])
+        });
+      }
       setPlayerClasses(list)
     })()
   }, [setPlayerClasses])
@@ -92,12 +95,12 @@ const MainClass = () => {
                     </p>
                     <p className="mb-2 text-primary">Armor Proficiency:
                       <span className="pl-2 text-foreground">
-                        {playerClass.classFeatures.proficiencies.armorProficiency === 'none' ? 'none' : playerClass.classFeatures.proficiencies.armorProficiency.map((item, index) => (<span>{item}{index === playerClass.classFeatures.proficiencies.armorProficiency.length - 1 ? '' : ', '}</span>))}
+                        {playerClass.classFeatures.proficiencies.armorProficiency === 'none' ? 'none' : playerClass.classFeatures.proficiencies.armorProficiency.map((item, index) => (<span key={'armorprof' + index}>{item}{index === playerClass.classFeatures.proficiencies.armorProficiency.length - 1 ? '' : ', '}</span>))}
                       </span>
                     </p>
                     <p className="mb-2 text-primary">Weapon Proficiency:
                       <span className="pl-2 text-foreground">
-                        {playerClass.classFeatures.proficiencies.weaponProficiency.map((item, index) => (<span>{item}{index === playerClass.classFeatures.proficiencies.weaponProficiency.length - 1 ? '' : ', '}</span>))}
+                        {playerClass.classFeatures.proficiencies.weaponProficiency.map((item, index) => (<span key={'weaponprof' + index}>{item}{index === playerClass.classFeatures.proficiencies.weaponProficiency.length - 1 ? '' : ', '}</span>))}
                       </span>
                     </p>
                     <p className="text-primary">Tool Proficiency:</p>
@@ -105,7 +108,7 @@ const MainClass = () => {
                       {playerClass.classFeatures.proficiencies.tools.fixed === 'none'
                         ? 'none'
                         : Array.isArray(playerClass.classFeatures.proficiencies.tools.fixed)
-                          ? playerClass.classFeatures.proficiencies.tools.fixed.map((item, index) => (<span>{item.item}{index === (Array.isArray(playerClass.classFeatures.proficiencies.tools.fixed)
+                          ? playerClass.classFeatures.proficiencies.tools.fixed.map((item, index) => (<span key={'toolprof' + index}>{item.item}{index === (Array.isArray(playerClass.classFeatures.proficiencies.tools.fixed)
                             ? playerClass.classFeatures.proficiencies.tools.fixed.length - 1
                             : 0)
                             ? ''
