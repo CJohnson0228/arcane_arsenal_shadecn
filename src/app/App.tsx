@@ -1,9 +1,6 @@
 import { artisanAtom, artisanUrlAtom, authAtom } from "@/atoms/appAtom"
 import { userAtom } from "@/atoms/userAtom"
-import { auth } from "@/config/firebase.config"
 import { artisansArray } from "@/utils/artisans"
-import fetchUser from "@/utils/fetchUser"
-import { onAuthStateChanged } from "firebase/auth"
 import { useSetAtom } from "jotai"
 import { useEffect } from "react"
 import { RouterProvider } from "react-router"
@@ -21,44 +18,70 @@ function App() {
     setArtisanUrl(artisansArray[artisanSelect])
   }, [setArtisan, setArtisanUrl])
 
+  // database token authentication here
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        console.log('User: ' + user.displayName + ' is logged in')
-        if (user.displayName) {
-          fetchUser(user).then((data) => {
-            if (data) {
-              setUser({
-                displayName: data.displayName,
-                firstName: data.firstName,
-                lastName: data.lastName,
-                initials: data.initials,
-                photoUrl: data.photoURL,
-                email: data.email,
-                emailVerified: data.emailVerified,
-                uid: data.uid,
-              })
-            }
-          })
-          setAuth(true)
+    (async () => {
+      const userToken = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user') as string) : null
+      if (userToken) {
+        const response = await fetch(`http://localhost:8082/api/user/${userToken.uid}`)
+        const json = await response.json()
+        if (!response.ok) {
+          console.log('there was an error')
         }
-      } else {
-        console.log('no user in firebase auth state')
-        setAuth(false)
-        setUser({
-          displayName: undefined,
-          firstName: undefined,
-          lastName: undefined,
-          initials: undefined,
-          photoUrl: undefined,
-          email: undefined,
-          emailVerified: false,
-          uid: undefined,
-        })
+        if (response.ok) {
+          setAuth(true)
+          setUser({
+            displayName: json.displayName,
+            firstName: json.firstName,
+            lastName: json.lastName,
+            initials: json.initials,
+            photoUrl: (json.photoURL) ? json.photoURL : undefined,
+            email: json.email,
+            uid: json._id,
+          })
+        }
       }
-    })
-    return () => unsubscribe()
+    })()
+
   }, [setAuth, setUser])
+
+  // firebase auth state here
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       console.log('User: ' + user.displayName + ' is logged in')
+  //       if (user.displayName) {
+  //         fetchUser(user).then((data) => {
+  //           if (data) {
+  //             setUser({
+  //               displayName: data.displayName,
+  //               firstName: data.firstName,
+  //               lastName: data.lastName,
+  //               initials: data.initials,
+  //               photoUrl: data.photoURL,
+  //               email: data.email,
+  //               uid: data.uid,
+  //             })
+  //           }
+  //         })
+  //         setAuth(true)
+  //       }
+  //     } else {
+  //       console.log('no user in firebase auth state')
+  //       setAuth(false)
+  //       setUser({
+  //         displayName: undefined,
+  //         firstName: undefined,
+  //         lastName: undefined,
+  //         initials: undefined,
+  //         photoUrl: undefined,
+  //         email: undefined,
+  //         uid: undefined,
+  //       })
+  //     }
+  //   })
+  //   return () => unsubscribe()
+  // }, [setAuth, setUser])
 
   return (
     <div

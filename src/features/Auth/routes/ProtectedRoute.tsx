@@ -1,5 +1,3 @@
-import { auth } from "@/config/firebase.config";
-import { onAuthStateChanged } from "firebase/auth";
 import { PropsWithChildren, useEffect } from "react";
 import { useNavigate } from "react-router";
 
@@ -9,11 +7,10 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
   const navigate = useNavigate()
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        navigate('/auth', { replace: true })
-      }
-    })
+    const userToken = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user') as string) : null
+    if (!userToken) {
+      navigate('/auth', { replace: true })
+    }
   }, [navigate])
 
   return children

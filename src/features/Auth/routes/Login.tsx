@@ -7,27 +7,8 @@ import { motion } from "motion/react"
 import { useForm } from "react-hook-form"
 import { z } from 'zod'
 import { AuthProps } from "../Auth"
-import useAuthentication from "../hooks/useAuth"
-
-const LoginSchema = z.object({
-  email: z.string().email({
-    message: "Email must be a valid email address"
-  }),
-  password: z
-    .string()
-    .min(7, { message: "Password must be at least 7 characters" })
-    .max(20, { message: "Password can be no longer than 20 characters" })
-    .refine((password) => /[A-Z]/.test(password), {
-      message: "Password must have at least one upper case latter",
-    })
-    .refine((password) => /[a-z]/.test(password), {
-      message: "Password must have at least one lower case letter",
-    })
-    .refine((password) => /[0-9]/.test(password), { message: "Password must have at least one number" })
-    .refine((password) => /[!@#$%^&*]/.test(password), {
-      message: "Password must have at least one special character",
-    })
-})
+import useAuthentication from "../hooks/useAuthentication"
+import { LoginSchema } from "../utils/AuthSchemas"
 
 const Login = (props: AuthProps) => {
   const { signInCall, isLoading, error } = useAuthentication()
@@ -39,6 +20,7 @@ const Login = (props: AuthProps) => {
     }
   })
 
+  // authentication submit
   const onSubmit = (data: z.infer<typeof LoginSchema>) => {
     signInCall(data.email, data.password)
   }
@@ -92,7 +74,7 @@ const Login = (props: AuthProps) => {
             </Button>
           </div>
         </form>
-        {error && <div className="bg-destructive text-destructive-foreground">{error}</div>}
+        {error && <div className="bg-destructive mt-2 text-center text-destructive-foreground">{error}</div>}
       </Form>
     </div>
   )

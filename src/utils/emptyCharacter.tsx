@@ -8,7 +8,7 @@ export const emptyCharacter: CharacterType = {
   advancementType: 'milestone',
   hitpointAdvance: 'fixed',
   encumbranceRule: 'standard',
-  encumbranceCoins: false,
+  encumbranceIgnoreCoins: false,
   abilityScoreDisplay: 'modifier',
   gender: 'f',
   level: 1,
@@ -113,5 +113,9 @@ export const emptyCharacter: CharacterType = {
     levelSeven: { total: 0, expended: 0 },
     levelEight: { total: 0, expended: 0 },
     levelNine: { total: 0, expended: 0 },
-  }
+  },
+  mainClass: undefined,
+  subClass: undefined,
+  species: "Halfling",
+  subSpecies: undefined
 }

@@ -7,7 +7,6 @@ interface UserType {
   initials: string | undefined
   photoUrl: string | undefined
   email: string | undefined
-  emailVerified: boolean
   uid: string | undefined
 }
 
@@ -18,7 +17,6 @@ const userAtom = atom<UserType>({
   initials: undefined,
   photoUrl: undefined,
   email: undefined,
-  emailVerified: false,
   uid: undefined,
 })
 

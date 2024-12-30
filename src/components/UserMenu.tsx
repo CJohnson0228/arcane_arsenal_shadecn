@@ -1,7 +1,7 @@
 import { userMenuOpenAtom } from '@/atoms/appAtom'
 import { cardCharactersAtom } from '@/atoms/charactersAtom'
 import { userAtom } from '@/atoms/userAtom'
-import useAuthentication from '@/features/Auth/hooks/useAuth'
+import useAuthentication from '@/features/Auth/hooks/useAuthentication'
 import { fetchUsersCharacters } from '@/utils/fetchCharacters'
 import { useAtom, useAtomValue } from 'jotai'
 import { ArrowBigRight, UserRoundPen } from 'lucide-react'
