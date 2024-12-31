@@ -26,7 +26,6 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
-    "firebase": "^11.1.0",
     "jotai": "^2.10.3",
     "jotai-devtools": "^0.10.1",
     "jotai-optics": "^0.4.0",
