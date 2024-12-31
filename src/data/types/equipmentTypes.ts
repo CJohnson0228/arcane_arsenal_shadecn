@@ -1,5 +1,5 @@
 export interface toolType {
-  item: string
+  name: string
   cost: number
   weight: number
 }

@@ -1,7 +1,7 @@
-import { allArmorType } from '@/data/equipment/types/armorTypes'
-import { toolType } from '@/data/equipment/types/equipmentTypes'
-import { allWeaponsType } from '@/data/equipment/types/weaponTypes'
-import { skillsListType } from '@/data/proficiencies/types/skillsListType'
+import { allArmorType } from '@/data/types/armorTypes'
+import { toolType } from '@/data/types/equipmentTypes'
+import { allWeaponsType } from '@/data/types/weaponTypes'
+import { ProficiencyType } from './ProficienciesType'
 
 export type ClassNameType =
   | 'artificer'
@@ -44,7 +44,7 @@ export interface mainClassType {
         info: string
         value: number
       }
-      hitPoinmtsAtHigherLevels: {
+      hitPointsAtHigherLevels: {
         info: string
         value: number
       }
@@ -72,7 +72,7 @@ export interface mainClassType {
       savingThrows: AbilityType[]
       skills: {
         selections: number
-        choices: skillsListType[]
+        choices: ProficiencyType[]
       }
     }
   }

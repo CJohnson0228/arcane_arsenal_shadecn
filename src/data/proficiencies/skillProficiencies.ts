@@ -1,127 +1,40 @@
-import { ProficiencyType } from './types/ProficienciesType'
+import { ProficiencyType } from '../types/ProficienciesType'
+import { acrobatics } from './Acrobatics'
+import { animalhandling } from './AnimalHandling'
+import { arcana } from './Arcana'
+import { athletics } from './Athletics'
+import { deception } from './Deception'
+import { history } from './History'
+import { insight } from './Insight'
+import { intimidation } from './Intimidation'
+import { investigation } from './Investigation'
+import { medicine } from './Medicine'
+import { nature } from './Nature'
+import { perception } from './Perception'
+import { performance } from './Performance'
+import { persuasion } from './Persuasion'
+import { religion } from './Religion'
+import { sleightofhand } from './SleightofHand'
+import { stealth } from './Stealth'
+import { survival } from './Survival'
 
-export const acrobatics: ProficiencyType = {
-  name: 'acrobatics',
-  type: 'skill',
-  classes: [],
-  species: [],
-}
-
-export const animalhandling: ProficiencyType = {
-  name: 'animal handling',
-  type: 'skill',
-  classes: [],
-  species: [],
-}
-
-export const arcana: ProficiencyType = {
-  name: 'arcana',
-  type: 'skill',
-  classes: [],
-  species: [],
-}
-
-export const athletics: ProficiencyType = {
-  name: 'athletics',
-  type: 'skill',
-  classes: [],
-  species: [],
-}
-
-export const deception: ProficiencyType = {
-  name: 'deception',
-  type: 'skill',
-  classes: [],
-  species: [],
-}
-
-export const history: ProficiencyType = {
-  name: 'history',
-  type: 'skill',
-  classes: [],
-  species: [],
-}
-
-export const insight: ProficiencyType = {
-  name: 'insight',
-  type: 'skill',
-  classes: [],
-  species: [],
-}
-
-export const intimidation: ProficiencyType = {
-  name: 'intimidation',
-  type: 'skill',
-  classes: [],
-  species: [],
-}
-
-export const investigation: ProficiencyType = {
-  name: 'investigation',
-  type: 'skill',
-  classes: [],
-  species: [],
-}
-
-export const medicine: ProficiencyType = {
-  name: 'medicine',
-  type: 'skill',
-  classes: [],
-  species: [],
-}
-
-export const nature: ProficiencyType = {
-  name: 'nature',
-  type: 'skill',
-  classes: [],
-  species: [],
-}
-
-export const perception: ProficiencyType = {
-  name: 'perception',
-  type: 'skill',
-  classes: [],
-  species: ['elf'],
-}
-
-export const performance: ProficiencyType = {
-  name: 'performance',
-  type: 'skill',
-  classes: [],
-  species: [],
-}
-
-export const persuasion: ProficiencyType = {
-  name: 'persuasion',
-  type: 'skill',
-  classes: [],
-  species: [],
-}
-
-export const religion: ProficiencyType = {
-  name: 'religion',
-  type: 'skill',
-  classes: [],
-  species: [],
-}
-
-export const sleightofhand: ProficiencyType = {
-  name: 'sleight of hand',
-  type: 'skill',
-  classes: [],
-  species: [],
-}
-
-export const stealth: ProficiencyType = {
-  name: 'stealth',
-  type: 'skill',
-  classes: [],
-  species: [],
-}
-
-export const survival: ProficiencyType = {
-  name: 'survival',
-  type: 'skill',
-  classes: [],
-  species: [],
-}
+export const SkillProficiencies: ProficiencyType[] = [
+  acrobatics,
+  animalhandling,
+  arcana,
+  athletics,
+  deception,
+  history,
+  insight,
+  intimidation,
+  investigation,
+  medicine,
+  nature,
+  perception,
+  performance,
+  persuasion,
+  religion,
+  sleightofhand,
+  stealth,
+  survival,
+]

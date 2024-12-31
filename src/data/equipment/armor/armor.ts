@@ -1,4 +1,4 @@
-import { allArmorType } from '../types/armorTypes'
+import { allArmorType } from '../../types/armorTypes'
 
 export const heavyArmor = [
   'ring mail',

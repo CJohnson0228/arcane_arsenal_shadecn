@@ -1,5 +1,6 @@
 import { artisanAtom, artisanUrlAtom, authAtom } from "@/atoms/appAtom"
 import { userAtom } from "@/atoms/userAtom"
+import { tools } from "@/data/equipment/generalEquipment"
 import { artisansArray } from "@/utils/artisans"
 import { useSetAtom } from "jotai"
 import { useEffect } from "react"
@@ -13,6 +14,8 @@ function App() {
   const setArtisanUrl = useSetAtom(artisanUrlAtom)
 
   useEffect(() => {
+    console.log(tools)
+
     const artisanSelect = Math.floor(Math.random() * artisansArray.length)
     setArtisan(artisanSelect)
     setArtisanUrl(artisansArray[artisanSelect])
