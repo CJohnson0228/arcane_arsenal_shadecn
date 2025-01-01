@@ -1,46 +1,83 @@
-const wizard = {
-  name: '',
-  accentText: '',
-  description: '',
-  primaryAbility: '',
+import {
+  simpleMeleeWeapons,
+  simpleRangedWeapons,
+} from '../equipment/weapons/weapons'
+import { SkillProficiencies } from '../proficiencies/skillProficiencies'
+import { mainClassType } from '../types/mainClassType'
+
+const wizard: mainClassType = {
+  name: 'wizard',
+  accentText:
+    'A scholarly magic-user capable of manipulating the structures of reality.',
+  description:
+    'Wizards live and die by their spells. Everything else is secondary. They learn new spells as they experiment and grow in experience. They can also learn them from other wizards, from ancient tomes or inscriptions, and from ancient creatures (such as the fey) that are steeped in magic.',
+  primaryAbility: 'intelligence',
   subclasses: {
-    choiceLevel: 0,
-    options: [],
+    choiceLevel: 2,
+    options: [
+      'abjuration',
+      'conjuration',
+      'divination',
+      'enchantment',
+      'evocation',
+      'illusion',
+      'necromancy',
+      'transmutation',
+      'war magic',
+      'bladesinging',
+      'order of scribes',
+    ],
   },
   image: {
-    m: '',
-    f: '',
+    m: '/images/classes/wizard-m.png',
+    f: '/images/classes/wizard-f.png',
   },
   classFeatures: {
     hitPoints: {
-      hitDice: 0,
+      hitDice: 6,
       hitPointsAtHigherLevels: {
-        info: '',
-        value: 0,
+        info: '1d6 (or 4) + your Constitution modifier per wizard level',
+        value: 4,
       },
       hitPointsAtLevelOne: {
-        info: '',
-        value: 0,
+        info: '6 + your constitution modifier',
+        value: 6,
       },
     },
     proficiencies: {
-      armorProficiency: [],
-      weaponProficiency: [],
-      savingThrows: [],
+      armorProficiency: 'none',
+      weaponProficiency: [
+        simpleMeleeWeapons[1],
+        simpleMeleeWeapons[7],
+        simpleRangedWeapons[0],
+        simpleRangedWeapons[1],
+      ],
+      savingThrows: ['intelligence', 'wisdom'],
       skills: {
-        choices: [],
+        choices: [
+          SkillProficiencies[2],
+          SkillProficiencies[5],
+          SkillProficiencies[6],
+          SkillProficiencies[8],
+          SkillProficiencies[9],
+          SkillProficiencies[14],
+        ],
         selections: 2,
       },
       tools: {
-        fixed: [],
-        options: [],
-        selections: 1,
+        fixed: 'none',
+        options: 'none',
+        selections: 0,
       },
     },
   },
   classProgression: [
     {
-      features: [],
+      features: ['spellcasting', 'arcane recovery'],
+      proficiencyBonus: 2,
+    },
+    {
+      features: ['arcane tradition'],
       proficiencyBonus: 2,
     },
     {
@@ -48,11 +85,7 @@ const wizard = {
       proficiencyBonus: 2,
     },
     {
-      features: [],
-      proficiencyBonus: 2,
-    },
-    {
-      features: [],
+      features: ['ability score improvement'],
       proficiencyBonus: 2,
     },
     {
@@ -60,7 +93,7 @@ const wizard = {
       proficiencyBonus: 3,
     },
     {
-      features: [],
+      features: ['arcane tradition feature'],
       proficiencyBonus: 3,
     },
     {
@@ -68,7 +101,7 @@ const wizard = {
       proficiencyBonus: 3,
     },
     {
-      features: [],
+      features: ['ability score improvement'],
       proficiencyBonus: 3,
     },
     {
@@ -76,7 +109,7 @@ const wizard = {
       proficiencyBonus: 4,
     },
     {
-      features: [],
+      features: ['arcane tradition feature'],
       proficiencyBonus: 4,
     },
     {
@@ -84,7 +117,7 @@ const wizard = {
       proficiencyBonus: 4,
     },
     {
-      features: [],
+      features: ['ability score improvement'],
       proficiencyBonus: 4,
     },
     {
@@ -92,7 +125,7 @@ const wizard = {
       proficiencyBonus: 5,
     },
     {
-      features: [],
+      features: ['arcane tradition feature'],
       proficiencyBonus: 5,
     },
     {
@@ -100,7 +133,7 @@ const wizard = {
       proficiencyBonus: 5,
     },
     {
-      features: [],
+      features: ['ability score improvement'],
       proficiencyBonus: 5,
     },
     {
@@ -108,19 +141,24 @@ const wizard = {
       proficiencyBonus: 6,
     },
     {
-      features: [],
+      features: ['spell mastery'],
       proficiencyBonus: 6,
     },
     {
-      features: [],
+      features: ['ability score improvement'],
       proficiencyBonus: 6,
     },
     {
-      features: [],
+      features: ['signature spell'],
       proficiencyBonus: 6,
     },
   ],
-  startingEquipment: [],
+  startingEquipment: [
+    'a quarterstaff or a dagger',
+    'a component pouch or arcane focus',
+    "a scholar's pack or an explorer's pack",
+    'a spellbook',
+  ],
 }
 
 export default wizard

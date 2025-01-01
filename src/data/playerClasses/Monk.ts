@@ -1,126 +1,155 @@
-const monk = {
-  name: '',
-  accentText: '',
-  description: '',
-  primaryAbility: '',
+import { artisanTools, musicalInstruments } from '../equipment/generalEquipment'
+import {
+  martialMeleeWeapons,
+  simpleWeapons,
+} from '../equipment/weapons/weapons'
+import { SkillProficiencies } from '../proficiencies/skillProficiencies'
+import { mainClassType } from '../types/mainClassType'
+
+const monk: mainClassType = {
+  name: 'monk',
+  accentText: 'A martial artist of exceptional skill and discipline',
+  description:
+    'Monks harness the Ki within themselves to create magical effects and exceed their bodies physical capabilities, and some of their special attacks can hinder the flow of ki in their opponents. Using this energy, monks channel uncanny speed and strength into their unarmed strikes. As they gain experience, their martial training and their mastery of ki gives them more power over their bodies and the bodies of their foes',
+  primaryAbility: 'wisdom',
   subclasses: {
-    choiceLevel: 0,
-    options: [],
+    choiceLevel: 3,
+    options: [
+      'way of the open hand',
+      'way of the shadow',
+      'way of the four elements',
+      'way of the drunken master',
+      'way of the kensei',
+      'way of the sun soul',
+      'way of mercy',
+      'way of the astral self',
+    ],
   },
   image: {
-    m: '',
-    f: '',
+    m: '/images/classes/monk-m.png',
+    f: '/images/classes/monk-f.png',
   },
   classFeatures: {
     hitPoints: {
-      hitDice: 0,
+      hitDice: 8,
       hitPointsAtHigherLevels: {
-        info: '',
-        value: 0,
+        info: '1d8 (or 5) + your Constitution modifier per monk level',
+        value: 5,
       },
       hitPointsAtLevelOne: {
-        info: '',
-        value: 0,
+        info: '8 + your Constitution modifier',
+        value: 8,
       },
     },
     proficiencies: {
-      armorProficiency: [],
-      weaponProficiency: [],
-      savingThrows: [],
+      armorProficiency: 'none',
+      weaponProficiency: [...simpleWeapons, martialMeleeWeapons[13]],
+      savingThrows: ['strength', 'dexterity'],
       skills: {
-        choices: [],
+        choices: [
+          SkillProficiencies[0],
+          SkillProficiencies[3],
+          SkillProficiencies[5],
+          SkillProficiencies[6],
+          SkillProficiencies[14],
+          SkillProficiencies[16],
+        ],
         selections: 2,
       },
       tools: {
-        fixed: [],
-        options: [],
+        fixed: 'none',
+        options: [...artisanTools, ...musicalInstruments],
         selections: 1,
       },
     },
   },
   classProgression: [
     {
-      features: [],
+      features: ['unarmored defense', 'martial arts'],
       proficiencyBonus: 2,
     },
     {
-      features: [],
+      features: ['ki', 'unarmored movement'],
       proficiencyBonus: 2,
     },
     {
-      features: [],
+      features: ['monastic tradition', 'deflect missiles'],
       proficiencyBonus: 2,
     },
     {
-      features: [],
+      features: ['ability score improvement', 'slow fall'],
       proficiencyBonus: 2,
     },
     {
-      features: [],
+      features: ['extra attack', 'stunning strike'],
       proficiencyBonus: 3,
     },
     {
-      features: [],
+      features: ['ki empowered strikes', 'monastic tradition feature'],
       proficiencyBonus: 3,
     },
     {
-      features: [],
+      features: ['evasion', 'stillness of mind'],
       proficiencyBonus: 3,
     },
     {
-      features: [],
+      features: ['ability score improvement'],
       proficiencyBonus: 3,
     },
     {
-      features: [],
+      features: ['unarmored movement improvement'],
       proficiencyBonus: 4,
     },
     {
-      features: [],
+      features: ['purity of body'],
       proficiencyBonus: 4,
     },
     {
-      features: [],
+      features: ['monastic tradition feature'],
       proficiencyBonus: 4,
     },
     {
-      features: [],
+      features: ['ability score improvement'],
       proficiencyBonus: 4,
     },
     {
-      features: [],
+      features: ['tongue of the sun and moon'],
       proficiencyBonus: 5,
     },
     {
-      features: [],
+      features: ['diamond soul'],
       proficiencyBonus: 5,
     },
     {
-      features: [],
+      features: ['timeless body'],
       proficiencyBonus: 5,
     },
     {
-      features: [],
+      features: ['ability score improvement'],
       proficiencyBonus: 5,
     },
     {
-      features: [],
+      features: ['monastic tradition feature'],
       proficiencyBonus: 6,
     },
     {
-      features: [],
+      features: ['empty body'],
       proficiencyBonus: 6,
     },
     {
-      features: [],
+      features: ['ability score improvement'],
       proficiencyBonus: 6,
     },
     {
-      features: [],
+      features: ['perfect self'],
       proficiencyBonus: 6,
     },
   ],
-  startingEquipment: [],
+  startingEquipment: [
+    'shortsword or any simple weapon',
+    "dungeoneer's pack or explorer's pack",
+    '10 darts',
+  ],
 }
 
 export default monk

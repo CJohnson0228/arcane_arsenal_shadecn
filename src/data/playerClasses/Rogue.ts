@@ -1,126 +1,170 @@
-const rogue = {
-  name: '',
-  accentText: '',
-  description: '',
-  primaryAbility: '',
+import { lightArmor } from '../equipment/armor/armor'
+import { tools } from '../equipment/generalEquipment'
+import {
+  martialMeleeWeapons,
+  martialRangedWeapons,
+  simpleWeapons,
+} from '../equipment/weapons/weapons'
+import { SkillProficiencies } from '../proficiencies/skillProficiencies'
+import { mainClassType } from '../types/mainClassType'
+
+const rogue: mainClassType = {
+  name: 'rogue',
+  accentText: 'An expert in stealth and deception',
+  description:
+    'Rogues devote as much effort to mastering the use of a variety of skills as they do to perfecting their combat abilities, giving them a broad expertise that few other characters can match. Many rogues focus on stealth and deception, while others refine the skills that help them in a dungeon environment, such as climbing, finding and disarm ing traps, and opening locks.',
+  primaryAbility: 'dexterity',
   subclasses: {
-    choiceLevel: 0,
-    options: [],
+    choiceLevel: 3,
+    options: [
+      'arcane trickster',
+      'thief',
+      'assassin',
+      'inquisitive',
+      'mastermind',
+      'scout',
+      'swashbuckler',
+      'phantom',
+      'soulknife',
+    ],
   },
   image: {
-    m: '',
-    f: '',
+    m: '/images/classes/rogue-m.png',
+    f: '/images/classes/rogue-f.png',
   },
   classFeatures: {
     hitPoints: {
-      hitDice: 0,
+      hitDice: 8,
       hitPointsAtHigherLevels: {
-        info: '',
-        value: 0,
+        info: '1d8 (or 5) + your Constitution modifier per rogue level',
+        value: 5,
       },
       hitPointsAtLevelOne: {
-        info: '',
-        value: 0,
+        info: '8 + your Constitution modifier',
+        value: 8,
       },
     },
     proficiencies: {
-      armorProficiency: [],
-      weaponProficiency: [],
-      savingThrows: [],
+      armorProficiency: [...lightArmor],
+      weaponProficiency: [
+        ...simpleWeapons,
+        martialRangedWeapons[1],
+        martialMeleeWeapons[7],
+        martialMeleeWeapons[11],
+        martialMeleeWeapons[13],
+      ],
+      savingThrows: ['dexterity', 'intelligence'],
       skills: {
-        choices: [],
-        selections: 2,
+        choices: [
+          SkillProficiencies[0],
+          SkillProficiencies[3],
+          SkillProficiencies[4],
+          SkillProficiencies[6],
+          SkillProficiencies[7],
+          SkillProficiencies[8],
+          SkillProficiencies[11],
+          SkillProficiencies[12],
+          SkillProficiencies[13],
+          SkillProficiencies[14],
+          SkillProficiencies[15],
+        ],
+        selections: 4,
       },
       tools: {
-        fixed: [],
-        options: [],
-        selections: 1,
+        fixed: [tools.thievesTools],
+        options: 'none',
+        selections: 0,
       },
     },
   },
   classProgression: [
     {
-      features: [],
+      features: ['expertise', 'sneak attack', "theives' cant"],
       proficiencyBonus: 2,
     },
     {
-      features: [],
+      features: ['cunning action'],
       proficiencyBonus: 2,
     },
     {
-      features: [],
+      features: ['roguish archetype'],
       proficiencyBonus: 2,
     },
     {
-      features: [],
+      features: ['ability score improvement'],
       proficiencyBonus: 2,
     },
     {
-      features: [],
+      features: ['uncanny dodge'],
       proficiencyBonus: 3,
     },
     {
-      features: [],
+      features: ['expertise'],
       proficiencyBonus: 3,
     },
     {
-      features: [],
+      features: ['evasion'],
       proficiencyBonus: 3,
     },
     {
-      features: [],
+      features: ['ability score improvement'],
       proficiencyBonus: 3,
     },
     {
-      features: [],
+      features: ['roguish archetype feature'],
       proficiencyBonus: 4,
     },
     {
-      features: [],
+      features: ['ability score improvement'],
       proficiencyBonus: 4,
     },
     {
-      features: [],
+      features: ['reliable talent'],
       proficiencyBonus: 4,
     },
     {
-      features: [],
+      features: ['ability score improvement'],
       proficiencyBonus: 4,
     },
     {
-      features: [],
+      features: ['roguish archetype feature'],
       proficiencyBonus: 5,
     },
     {
-      features: [],
+      features: ['blindsense'],
       proficiencyBonus: 5,
     },
     {
-      features: [],
+      features: ['slippery mind'],
       proficiencyBonus: 5,
     },
     {
-      features: [],
+      features: ['ability score improvement'],
       proficiencyBonus: 5,
     },
     {
-      features: [],
+      features: ['roguish archetype feature'],
       proficiencyBonus: 6,
     },
     {
-      features: [],
+      features: ['elusive'],
       proficiencyBonus: 6,
     },
     {
-      features: [],
+      features: ['ability score improvement'],
       proficiencyBonus: 6,
     },
     {
-      features: [],
+      features: ['stroke of luck'],
       proficiencyBonus: 6,
     },
   ],
-  startingEquipment: [],
+  startingEquipment: [
+    'a rapier or shortsword',
+    'a shortbow and quiver of 20 arrows or a shortsword',
+    "a burglar's pack, a dungeoneer's pack, or an explorer's pack",
+    "leather armor, two daggers, and thieves' tools",
+  ],
 }
 
 export default rogue
