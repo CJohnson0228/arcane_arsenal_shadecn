@@ -1,7 +1,7 @@
-import { allArmorType } from '@/data/types/armorTypes'
 import { toolType } from '@/data/types/equipmentTypes'
-import { allWeaponsType } from '@/data/types/weaponTypes'
+import { ArmorType } from './armorType'
 import { ProficiencyType } from './ProficienciesType'
+import { WeaponType } from './weaponTypes'
 
 export type ClassNameType =
   | 'artificer'
@@ -50,20 +50,8 @@ export interface mainClassType {
       }
     }
     proficiencies: {
-      armorProficiency:
-        | (
-            | allArmorType
-            | 'light armor'
-            | 'medium armor'
-            | 'heavy armor'
-            | 'shields'
-          )[]
-        | 'none'
-      weaponProficiency: (
-        | allWeaponsType
-        | 'simple weapons'
-        | 'martial weapons'
-      )[]
+      armorProficiency: ArmorType[] | 'none'
+      weaponProficiency: WeaponType[]
       tools: {
         selections: number
         fixed: toolType | toolType[] | 'none'

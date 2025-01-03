@@ -1,10 +1,14 @@
-import { languages } from './languages'
+import { languages } from '../misc/languages'
+import { SkillProficiencies } from '../proficiencies/skillProficiencies'
+import { BackgroundType } from './_Backgrounds'
 
-export const acolyte = {
+export const acolyte: BackgroundType = {
   name: 'acolyte',
   description:
     'You have spent your life in the service of a temple to a specific god or pantheon of gods. You act as an intermediary between the realm of the holy and the mortal world, performing sacred rites and offering sacrifices in order to conduct worshipers into the presence of the divine. You are not necessarily a cleric - performing sacred rites is not the same thing as channeling divine power.',
-  startingProficiencies: ['insight', 'religion'],
+  startingProficiencies: {
+    given: [SkillProficiencies[6], SkillProficiencies[14]],
+  },
   languageOptions: {
     choose: 2,
     from: languages,
@@ -16,19 +20,13 @@ export const acolyte = {
     gold: 15,
     platinum: 0,
   },
-  startingEquipment: [
-    {
-      name: 'common cloths',
-      quantity: 1,
+  startingEquipment: {
+    fixed: ['common clothes'],
+    choices: {
+      options: ['amulet', 'emblem', 'reliquary'],
+      selection: 1,
     },
-  ],
-  startingEquipmentOptions: [
-    {
-      choose: 1,
-      type: 'equipment',
-      from: ['amulet', 'emblem', 'reliquary'],
-    },
-  ],
+  },
   feature: {
     name: 'shelter of faith',
     description: [

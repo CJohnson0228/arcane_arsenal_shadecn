@@ -1,25 +1,37 @@
-import { allArmorType } from '../../types/armorTypes'
+import { chainMailArmor } from './heavyArmor/chainMailArmor'
+import { plateArmor } from './heavyArmor/plateArmor'
+import { ringMailArmor } from './heavyArmor/ringMailArmor'
+import { splintArmor } from './heavyArmor/splintArmor'
+import { leatherArmor } from './lightArmor/leatherArmor'
+import { paddedArmor } from './lightArmor/paddedArmor'
+import { studdedLeatherArmor } from './lightArmor/studdedleatherArmor'
+import { breastplateArmor } from './mediumArmor/breastplateArmor'
+import { chainShirtArmor } from './mediumArmor/chainshirtArmor'
+import { halfPlateArmor } from './mediumArmor/halfPlateArmor'
+import { hideArmor } from './mediumArmor/hideArmor'
+import { scalemailArmor } from './mediumArmor/scalemailArmor'
+import { shieldArmor } from './shields/shieldArmor'
 
 export const heavyArmor = [
-  'ring mail',
-  'chain mail',
-  'splint',
-  'plate',
-] as const
+  ringMailArmor,
+  chainMailArmor,
+  splintArmor,
+  plateArmor,
+]
 
 export const mediumArmor = [
-  'hide',
-  'chain shirt',
-  'scale mail',
-  'breastplate',
-  'half plate',
-] as const
+  hideArmor,
+  chainShirtArmor,
+  scalemailArmor,
+  breastplateArmor,
+  halfPlateArmor,
+]
 
-export const lightArmor = ['padded', 'leather', 'studded leather'] as const
+export const lightArmor = [paddedArmor, leatherArmor, studdedLeatherArmor]
 
-export const shields = ['shield'] as const
+export const shields = [shieldArmor]
 
-export const allBasicArmor: allArmorType[] = [
+export const allBasicArmor = [
   ...heavyArmor,
   ...mediumArmor,
   ...lightArmor,
