@@ -187,11 +187,12 @@ export interface CharacterType {
     | 'Dragonborn'
     | 'Dwarf'
     | 'Elf'
+    | 'Half-Elf'
     | 'Gnome'
     | 'Goliath'
     | 'Halfling'
     | 'Human'
-    | 'Orc'
+    | 'Half-Orc'
     | 'Tiefling'
   subSpecies: string | undefined
   appearance: string
